@@ -2,6 +2,10 @@
 DataDirectory /var/lib/tor
 Log notice stdout
 
+# SOCKS proxy for local applications
+SocksPort 0.0.0.0:9050
+SocksListenAddress 0.0.0.0
+
 # Main Hidden Service
 # Onion: h3nc4cd73utflolf2uxgws3j6rmgzotlwndukabzgzawpzk5fejws5id.onion
 HiddenServiceDir /var/lib/tor/h3nc4_service/

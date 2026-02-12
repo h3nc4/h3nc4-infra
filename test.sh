@@ -41,7 +41,23 @@ check_http() {
   fi
 }
 
+check_dns_block() {
+  if ! nslookup dns >/dev/null 2>&1; then
+    exit 0
+  fi
+  echo "Checking DNS block for $1..."
+  if nslookup "$1" dns 2>/dev/null | grep -q "0.0.0.0"; then
+    echo "$1 blocked"
+  else
+    echo "DNS block for $1 FAILED" >&2
+    exit 1
+  fi
+}
+
 # Wait for services to be ready
+if nslookup dns >/dev/null 2>&1; then
+  wait_for dns 53
+fi
 wait_for h3nc4 80
 wait_for wasudoku 80
 wait_for cgit 80
@@ -53,6 +69,9 @@ echo "Running HTTP smoke tests..."
 check_http h3nc4
 check_http wasudoku
 check_http cgit
+
+echo "Running DNS tests..."
+check_dns_block google.com
 
 echo "All tests passed successfully."
 

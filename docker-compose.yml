@@ -35,6 +35,30 @@ networks:
     internal: true
 
 services:
+  dns:
+    container_name: dns
+    image: coredns/coredns:1.14.1
+    restart: always
+    command: -conf /config/Corefile
+    read_only: true
+    profiles:
+      - production
+    ports:
+      - "0.0.0.0:53:53/udp"
+      - "0.0.0.0:53:53/tcp"
+    cap_drop:
+      - NET_RAW
+      - MKNOD
+      - SYS_MODULE
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./config/coredns/Corefile:/config/Corefile:ro
+      - ./config/coredns/blocklist.hosts:/config/blocklist.hosts:ro
+    networks:
+      - internal
+      - exposed
+
   maddy:
     image: foxcpp/maddy:0.8@sha256:eeb5813fc4d101ec5d8f7b08b7255fd76ced2a06884ea94450c8a9a22fd6a08d
     container_name: maddy
@@ -141,6 +165,8 @@ services:
       - production
     read_only: true
     user: "65534:65534"
+    ports:
+      - "0.0.0.0:9050:9050/tcp"
     cap_drop:
       - ALL
       - MKNOD
@@ -182,6 +208,22 @@ services:
       - ./config/telegram-scout/config.yaml:/config.yaml:ro
     networks:
       - external
+
+  wireguard:
+    container_name: wireguard
+    image: codeberg.org/wg-easy/wg-easy:15
+    network_mode: 'host'
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./data/wireguard:/etc/wireguard
+      - /lib/modules:/lib/modules:ro
+    environment:
+      - INSECURE=true
 
   syshealthcheck:
     container_name: syshealthcheck

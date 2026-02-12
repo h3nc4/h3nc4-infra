@@ -1,0 +1,13 @@
+. {
+    hosts /config/blocklist.hosts {
+        fallthrough
+    }
+
+    cache 300
+    forward . tls://1.1.1.1 tls://9.9.9.9 {
+    	tls_servername cloudflare-dns.com
+	}
+
+    errors
+    log
+}

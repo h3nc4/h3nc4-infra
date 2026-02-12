@@ -67,3 +67,19 @@ tddns Cloudflare API Token
 
     Zone Resources:
     Include -> Specific zone -> mydomain.com
+
+setup wireguard
+---------------
+	Copy config/90-wireguard.conf to /etc/sysctl.d/wg0.conf and set appropriate permissions.
+
+	cp config/90-wireguard.conf /etc/sysctl.d/90-wireguard.conf
+	chmod 600 /etc/sysctl.d/90-wireguard.conf
+	chown 0:0 /etc/sysctl.d/90-wireguard.conf
+
+	Apply the WireGuard configuration:
+
+	sysctl -p /etc/sysctl.d/90-wireguard.conf
+
+	Add the following iptables rule to enable NAT for the WireGuard subnet:
+
+	doas iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
