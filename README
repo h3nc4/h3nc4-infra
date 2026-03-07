@@ -82,4 +82,4 @@ setup wireguard
 
 	Add the following iptables rule to enable NAT for the WireGuard subnet:
 
-	doas iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+	iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE

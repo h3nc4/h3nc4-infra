@@ -225,6 +225,23 @@ services:
     environment:
       - INSECURE=true
 
+  minecraft:
+    container_name: minecraft
+    image: h3nc4/minecraft-slim:latest
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    profiles:
+      - production
+    ports:
+      - "0.0.0.0:25565:25565"
+    volumes:
+      - ./data/minecraft:/data
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
   syshealthcheck:
     container_name: syshealthcheck
     image: busybox:musl@sha256:19b646668802469d968a05342a601e78da4322a414a7c09b1c9ee25165042138
