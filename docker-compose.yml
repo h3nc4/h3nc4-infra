@@ -140,7 +140,7 @@ services:
 
   cgit:
     container_name: cgit
-    image: h3nc4/cgit-slim@sha256:ed4a97102fbe76f729905ee3cd2e1b58bef8667b3b895474c6ac6356d57604e9
+    image: h3nc4/cgit-slim@sha256:8a07903c2e8bc7881c905d16f4a0e59a8d0bb2e8c3a3c289c26f1b5be57ec2a9
     restart: always
     cap_drop:
       - ALL
