@@ -116,7 +116,7 @@ services:
   h3nc4:
     container_name: h3nc4
     domainname: h3nc4.com
-    image: h3nc4/portfolio@sha256:73d1c9d925d16764ac072d69b25f49ca8826c62c5a45a54bfe6bde2c75939ebf
+    image: h3nc4/portfolio@sha256:533f5684fc7a8a54b0787a8e7b3c72df04aee46a18aad1864445e78534bd4ef4
     restart: always
     cap_drop:
       - ALL
