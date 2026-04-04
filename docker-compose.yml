@@ -159,7 +159,7 @@ services:
 
   tor:
     container_name: tor
-    image: h3nc4/tor-slim@sha256:a5220411cf08d65390a90112fcf78f32f809979ab7b12f7dd6bff581e2538aef
+    image: h3nc4/tor-slim@sha256:5bff0cb216ef46fd25a67a61e01b82ea4ccf8f54da4ce79a34c802d99f98ef41
     restart: always
     profiles:
       - production
