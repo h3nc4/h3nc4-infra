@@ -113,6 +113,21 @@ services:
       - internal
       - external
 
+  http-gpg-key:
+    container_name: http-gpg-key
+    image: busybox:musl@sha256:19b646668802469d968a05342a601e78da4322a414a7c09b1c9ee25165042138
+    restart: always
+    read_only: true
+    command: httpd -f -p 80 -h /www
+    volumes:
+      - ./dreamweaver.asc:/www/dreamweaver.asc:ro
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - internal
+
   h3nc4:
     container_name: h3nc4
     domainname: h3nc4.com

@@ -1,2 +1,4 @@
 data/
 .env
+config/coredns/blocklist.hosts
+docker-compose.override.yml

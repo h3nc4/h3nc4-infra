@@ -1,6 +1,13 @@
 ingress:
+  # static file
+  - hostname: h3nc4.com
+    path: ^/dreamweaver.asc$
+    service: http://http-gpg-key:80
+
   # portfolio
   - hostname: h3nc4.com
+    service: http://h3nc4:80
+  - hostname: www.h3nc4.com
     service: http://h3nc4:80
 
   # WASudoku
