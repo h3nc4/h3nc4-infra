@@ -83,7 +83,7 @@ services:
 
   tddns:
     container_name: tddns
-    image: h3nc4/tddns@sha256:b26c541563af1083f9aa4665b824074ab449a4271bb464a2878ff8d58bb6dd5b
+    image: h3nc4/tddns@sha256:7e89dce83430610dbbd5d1ba6b13116b14ec64c80a574966c67338bdea103778
     restart: always
     profiles:
       - production
