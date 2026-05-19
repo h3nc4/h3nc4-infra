@@ -17,15 +17,15 @@
 set -eu
 
 # --- CONFIG ---
-REPO_DIR="/data/repository/personal/home-server"
+REPO_DIR="$(CDPATH="" cd -- "$(dirname -- "$0")" && pwd)"
 LOG_FILE="/var/log/home-server-deploy.log"
 LOCK_FILE="/tmp/home-server-deploy.lock"
 SSH_KEY_PATH="/home/dev/.ssh/id_deploy"
 
 # --- LOGGING ---
-exec >> "${LOG_FILE}" 2>&1
+exec >>"${LOG_FILE}" 2>&1
 log() {
-  printf "[%s] %s\n" "$(date -Is)" "$1"
+  printf "[%s] %s\n" "$(date -Is || :)" "$1"
 }
 cleanup() {
   EXIT_CODE=$?
@@ -54,6 +54,11 @@ fi
 
 cd "${REPO_DIR}"
 
+UPSTREAM_REF=$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}") || {
+  log "Error: current branch has no upstream configured"
+  exit 1
+}
+
 # --- FETCH UPDATES ---
 git fetch origin || { 
   log "Error: git fetch failed"
@@ -61,7 +66,7 @@ git fetch origin || {
 }
 
 LOCAL_HEAD="$(git rev-parse HEAD)"
-REMOTE_HEAD="$(git rev-parse origin/HEAD)"
+REMOTE_HEAD="$(git rev-parse "${UPSTREAM_REF}")"
 
 if [ "${LOCAL_HEAD}" = "${REMOTE_HEAD}" ]; then
   log "No changes detected, exiting."

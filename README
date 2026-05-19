@@ -20,6 +20,20 @@ Install update script
     # Add the following line to run cron.sh every hour
     0 * * * * /<path to repo>/cron.sh
 
+Install cert renewal script
+---------------------------
+
+    # touch /var/log/home-server-certbot-renew.log
+    # chown dev:dev /var/log/home-server-certbot-renew.log
+
+    $ crontab -e
+
+    # Run certbot renewal every 5 days at 03:00
+    0 3 */5 * * /<path to repo>/certbot-renew.sh
+
+    # Check the renewal log if needed
+    tail -f /var/log/home-server-certbot-renew.log
+
 To setup a hidden service
 -------------------------
 
@@ -55,6 +69,9 @@ Setup SSL
     mkdir -p data/certbot/certs data/certbot/logs
 
     docker run --rm -it -v "${PWD}/data/certbot/certs/:/etc/letsencrypt/" -v "${PWD}/data/certbot/logs/:/var/log/letsencrypt/" -p 80:80 certbot/certbot certonly --standalone -d mail.h3nc4.com
+
+    # Manual renewal check
+    docker run --rm -it -v "${PWD}/data/certbot/certs/:/etc/letsencrypt/" -v "${PWD}/data/certbot/logs/:/var/log/letsencrypt/" -p 80:80 certbot/certbot renew --standalone
 
 tddns Cloudflare API Token
 -----------------------------

@@ -35,7 +35,7 @@ jobs:
           openssl req -x509 -newkey rsa:4096 -keyout data/certbot/certs/live/mail.example.com/privkey.pem -out data/certbot/certs/live/mail.example.com/fullchain.pem -days 365 -nodes -subj "/CN=mail.example.com"
 
           # Create dummy .env
-          cat <<EOF > .env
+          cat <<EOF >.env
           TUNNEL_TOKEN=dummy
           MADDY_HOSTNAME=mail.example.com
           MADDY_DOMAIN=example.com

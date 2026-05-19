@@ -40,4 +40,4 @@ awk '
     print ip, host
 }
 ' |
-LC_ALL=C sort -u > blocklist.hosts
+LC_ALL=C sort -u >blocklist.hosts
