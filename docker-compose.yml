@@ -144,7 +144,7 @@ services:
     container_name: wasudoku
     hostname: wasudoku
     domainname: h3nc4.com
-    image: h3nc4/wasudoku@sha256:e75cee9b2f7dc6a7706a82080d6c33b3ad94d0a1b67723675df23be2405cbb6c
+    image: h3nc4/wasudoku@sha256:e459798c348f8af87def5faa13f55d7a31b0ca1a922407eeda2c39c0fae3deb6
     restart: always
     cap_drop:
       - ALL
