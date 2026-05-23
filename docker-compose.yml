@@ -115,7 +115,7 @@ services:
 
   http-gpg-key:
     container_name: http-gpg-key
-    image: busybox:musl@sha256:19b646668802469d968a05342a601e78da4322a414a7c09b1c9ee25165042138
+    image: busybox:musl@sha256:3b470adc2efc0d9efba49dfba55b0ecd00d7aafad2db3f4e37096e65781216e0
     restart: always
     read_only: true
     command: httpd -f -p 80 -h /www
@@ -259,7 +259,7 @@ services:
 
   syshealthcheck:
     container_name: syshealthcheck
-    image: busybox:musl@sha256:19b646668802469d968a05342a601e78da4322a414a7c09b1c9ee25165042138
+    image: busybox:musl@sha256:3b470adc2efc0d9efba49dfba55b0ecd00d7aafad2db3f4e37096e65781216e0
     volumes:
       - ./test.sh:/test.sh:ro
     command: /test.sh
