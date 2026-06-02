@@ -207,7 +207,7 @@ services:
 
   telegram-scout:
     container_name: telegram-scout
-    image: h3nc4/telegram-scout@sha256:ee0d83727c53675847fef548c0ba485d0a8371ba37c280e32ea7cae447be8644
+    image: h3nc4/telegram-scout@sha256:3c364e129d80202340f9e577a09cad76ce4365e3e37bdc9d5886d364ed987733
     restart: always
     profiles:
       - production
