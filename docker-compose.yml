@@ -242,7 +242,7 @@ services:
 
   minecraft:
     container_name: minecraft
-    image: h3nc4/minecraft-slim:latest@sha256:39a35373e150462c3651fb58249e0f658d34db291d7c9b958b47f40e667ad7ad
+    image: h3nc4/minecraft-slim:latest@sha256:d6fd60eee434e57b3cf2e1ac891e896c4b1a01c9178a3bd3d7a9b27bad05c695
     restart: unless-stopped
     stdin_open: true
     tty: true
