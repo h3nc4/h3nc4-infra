@@ -198,7 +198,7 @@ services:
 
   tor-reverse-proxy:
     container_name: tor-reverse-proxy
-    image: h3nc4/nginx-slim@sha256:ff39fc8a749bf8270bc6d6153b20a4b25b08211a507a6cbf17d05e17f0c69bc1
+    image: h3nc4/nginx-slim@sha256:caa6b783c42c37ae55bac505f72eda37411447d7bb96ccf5e4351a2215ff54b8
     restart: always
     volumes:
       - ./config/tor/nginx.conf:/etc/nginx.conf:ro
